@@ -29,7 +29,7 @@ class BaseCase:
 
 @pytest.fixture(scope='session')
 def credentials():
-    with open('/Users/konstantin.ermakov/Documents/creds', 'r') as f:
+    with open('/Users/k.soldatov/Documents/creds', 'r') as f:
         user = f.readline().strip()
         password = f.readline().strip()
 
@@ -37,14 +37,16 @@ def credentials():
 
 
 @pytest.fixture(scope='session')
-def cookies(credentials, config):
-    driver = get_driver(config['browser'])
-    driver.get(config['url'])
-    login_page = LoginPage(driver)
-    login_page.login(*credentials)
-
-    cookies = driver.get_cookies()
-    driver.quit()
+def cookies(credentials, config, api_client):
+    api_client.post_login()
+    cookies = []
+    for cookie in api_client.session.cookies:
+        cookies.append({
+            'name': cookie.name,
+            'domain': cookie.domain,
+            'path': cookie.path,
+            'value': cookie.value
+        })
     return cookies
 
 
@@ -84,3 +86,13 @@ class TestLK(BaseCase):
 
     def test_lk2(self):
         time.sleep(3)
+
+
+class TestLkApi:
+    @pytest.fixture(scope='class', autouse=True)
+    def setup(self, api_client):
+        api_client.post_login()
+
+    def test_api_login(self, api_client):
+        assert api_client.session.get('https://education.vk.company/profile/k.soldatov/').url == \
+               'https://education.vk.company/profile/k.soldatov/'

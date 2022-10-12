@@ -1,5 +1,6 @@
 import logging
 
+from api.client import ApiClient
 from ui.fixtures import *
 
 
@@ -78,3 +79,8 @@ def logger(temp_dir, config):
 
     for handler in log.handlers:
         handler.close()
+
+
+@pytest.fixture(scope='session')
+def api_client(credentials, config):
+    return ApiClient(base_url=config['url'], login=credentials[0], password=credentials[1])
