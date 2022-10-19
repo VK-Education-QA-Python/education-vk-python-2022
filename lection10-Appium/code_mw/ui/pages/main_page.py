@@ -7,7 +7,9 @@ import allure
 class MainPage(BasePage):
     locators = MainPageLocators()
 
-
+    @allure.step("Нажимаем на кнопку поиска")
+    def click_on_search_button(self):
+        pass
 
     def open_menu_button(self):
         pass
