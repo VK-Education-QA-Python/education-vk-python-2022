@@ -9,7 +9,7 @@
 
 #### Задача
 ##### Bash/Python scripting (максимум 6 баллов)
-* Написать скрипты на **bash** и **python** для анализа [готового access.log](https://cloud.mail.ru/public/W2Bi/3NmgGtATH) (на pytho)
+* Написать скрипты на **bash** и **python** для анализа [готового access.log](https://cloud.mail.ru/public/W2Bi/3NmgGtATH) (на python)
 * Должен быть README.md файл, который описывает как работает каждый скрипт.
 * Слово "запрос" далее означает конкретный location(path! внимательно прочитайте что это такое, буду душнить и снижать баллы), который был запрошен у сервера
 
