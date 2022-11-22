@@ -10,7 +10,7 @@ class MysqlClient:
         self.user = user
         self.port = '3306'
         self.password = password
-        self.host = '127.0.0.1'
+        self.host = 'percona'
         self.db_name = db_name
 
         self.connection = None

@@ -1,0 +1,28 @@
+version: '2.1'
+
+services:
+  percona:
+    environment:
+      MYSQL_ROOT_PASSWORD: '0000'
+    image: "percona:latest"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"-uroot", "-p0000", "ping", "-h", "127.0.0.1" ]
+      timeout: 1s
+      retries: 30
+
+  tests:
+    image: python_mock
+    tty: true
+    volumes:
+      - /Users/k.soldatov/PycharmProjects/education-vk-python-2022/lection15-SQL ORM:/code
+      - /Users/k.soldatov/PycharmProjects/education-vk-python-2022/lection15-SQL ORM/allure:/tmp/allure
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/bin/docker
+
+    entrypoint: /bin/bash start_tests.sh
+
+    environment:
+      TESTS_PATH: "code_orm/test_sql/test.py"
+
+    depends_on:
+      - percona
