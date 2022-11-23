@@ -255,7 +255,7 @@ Body:
  
  
 ## Пример запуска приложения
-Вместе за заданием поставляется docker-образ myapp. Докер образ доступен по [ссылке](https://cloud.mail.ru/public/hrkz/dh7SqxwKP).
+Вместе за заданием поставляется docker-образ myapp. Докер образ доступен по [ссылке](https://cloud.mail.ru/public/M1gR/ncS8PbBSd).
  
 Добавить скачанный образ в docker images можно командой `docker load -i myapp`.
  
